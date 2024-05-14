@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&display=swap');
+
+@keyframes zoomInHeading {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.08); /* Nagyobb zoom a címhez */
+    }
+    100% {
+      transform: scale(1); /* Ugyanaz a zoom a címhez */
+    }
+  }
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 2fr);
+    gap: 20px;
+  }
+
+  .image-container {
+    text-align: center;
+  }
+
+  .image-container img {
+    width: 170px;
+    height: auto;
+    border-width: 1.5px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: rgb(58, 58, 58);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.65s ease;
+  }
+
+  .image-container img:hover {
+    transform: scale(1.3);
+  }
+
+  .image-container p {
+    margin: 20px 0 0;
+    font-size: 18px;
+    color: #333;
+  }
+
+.container {
+    margin-top: 40px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    height: 28vh;
+    width: 200vh;
+  }
+
+  h1 {
+    text-align: center;
+    font-family: Poppins;
+    font-size: 35px;
+    animation: zoomInHeading 3s infinite;
+    margin: 40px;
+    text-shadow: 2px 2px 2px rgba(84, 84, 84, 0.85);
+  }
+
+  hr {
+    border: 1px solid rgb(162, 205, 241);
+  }
+
+ p.ár {
+    font-family: Arvo;
+    font-weight: bold;
+    font-style: italic;
+    color: rgb(86, 86, 86);
+ }
+ p.Leírás {
+    font-family: Mukta;
+    color: rgb(64, 64, 64);
+ }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  body {
+    text-align: center;
+    background-color: rgb(156, 156, 156);
+    
+  }
+
+  ol {
+    list-style: none; /* Remove the bullet points */
+    font-size: 16px;
+    padding: 0; /* Remove the padding */
+  }
+  ul {
+    list-style: none; /* Remove the bullet points */
+    font-size: 16px;
+    padding: 0; /* Remove the padding */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+  }
+  
+  li {
+    list-style: none;
+    margin-bottom: 5px;
+  }
+
+  ol.dokumentumok {
+    background-color: #c8deef;
+    margin-top: 26px;
+    margin: 1px;
+    font-family: Sedan;
+    font-size: 20px;
+  }
+
+  a {
+    transition: opacity 0.30s, text-shadow 0.40s;
+    text-decoration: none; /* Ez a tulajdonság eltávolítja az aláhúzást */
+    color: inherit; /* Ez azért kell, hogy az <a> színét örökölje a szülőelemtől */
+    
+  }
+  a:hover {
+    opacity: 0.6;
+    text-shadow: 2px 3px 5px rgba(92, 92, 92, 0.85);
+    text-decoration: none;
+  }

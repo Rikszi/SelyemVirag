@@ -1,159 +1,186 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selyemvirág Sopron | Árúk</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <script src="script.js"></script>
-    <link rel="icon" href="media/logo.png" type="image/x-icon" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Áruk — Selyemvirág</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="media/ildi_flower_logo.png" type="image/x-icon" />
+
+  <!-- New: small page-local styles for the product gallery (keep here only) -->
+  <style>
+    /* prevent page-level horizontal overflow */
+    html,body{overflow-x:hidden;box-sizing:border-box}
+
+    /* ensure wrapper respects viewport and can shrink */
+    .wrapper-main{max-width:100%;box-sizing:border-box}
+
+    /* gallery layout */
+    .product-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:1rem;
+      margin-top:.75rem;
+      align-items:start;
+      box-sizing:border-box;
+      width:100%;
+    }
+
+    /* card - allow shrinking to avoid overflow */
+    .product-card{
+      background:#fff;
+      border:1px solid #eee;
+      border-radius:8px;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      align-items:stretch;
+      box-shadow:0 6px 18px rgba(0,0,0,0.04);
+      box-sizing:border-box;
+      margin:0;
+      min-width:0; /* important to prevent flex/grid overflow on small screens */
+    }
+
+    /* image - fixed aspect, never overflow its card */
+    .product-card img{
+      display:block;
+      width:100%;
+      max-width:100%;
+      aspect-ratio:4/3;        /* stable crop, avoids layout overflow */
+      height:auto;
+      object-fit:cover;
+      box-sizing:border-box;
+      margin:0;
+      -webkit-user-drag: none;
+      user-select: none;
+    }
+
+    /* content area padding to keep images from touching viewport edge */
+    .content-area{padding-right:1rem;box-sizing:border-box}
+
+    /* keep body area (if ever used) consistent */
+    .product-body{padding:.75rem;flex:1;display:flex;flex-direction:column;gap:.5rem}
+    .product-title{font-weight:700;margin:0;font-size:1rem;color:#123}
+    .product-cta{display:flex;gap:.5rem;align-items:center;justify-content:space-between;margin-top:.5rem}
+    .btn-cta{background:var(--accent, #2f6bf0);color:#fff;border:0;padding:.45rem .6rem;border-radius:6px;text-decoration:none;font-size:.9rem}
+
+    @media (max-width:520px){
+      .product-card img{aspect-ratio:1.4/1} /* slightly taller on very small screens */
+      .product-body{padding:.6rem}
+    }
+
+    /* Dropdown menu styles */
+    .dropdown-menu {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      width: max-content;
+      min-width: 200px;
+    }
+    .dropdown-menu.open {
+      display: flex;
+    }
+    .dropdown-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .dropdown-menu ul li {
+      width: 100%;
+    }
+    .dropdown-menu ul li a {
+      display: block;
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      color: #333;
+      transition: background 0.3s;
+    }
+    .dropdown-menu ul li a:hover {
+      background: #f0f0f0;
+    }
+    @media (min-width: 900px) { .dropdown-menu { display: none !important; } }
+    .menu-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      padding: 0;
+      margin: 0;
+      color: #333;
+    }
+    .menu-toggle:active, .menu-toggle:focus {
+      outline: none;
+    }
+    .menu-bar { position: relative; }
+  </style>
 </head>
 <body>
-  <div class="menu-bar">
-    <h1 class="logo"><!--Light<span>Code.</span>--><img width="150px" src="media/ildi_flower_logo.png" alt="logo"></h1>
-    <ul>
-      <li><a href="index.html">Főoldal</a></li>
-      <li><a href="">Áruk</a></li>
-      <li><a href="hely.html">Elhelyezkedés</a>
-      <li><a href="Hauptseite.html"><span style="color: #0073FF;">Sprache: Deutsch</span></a></li>
-    </ul>
+  <div class="wrapper-main">
+    <div class="menu-bar">
+      <h1 class="logo"><img width="150px" src="media/ildi_flower_logo.png" alt="logo"></h1>
+      <button class="menu-toggle" aria-label="toggle menu">☰</button>
+      <ul>
+        <li><a href="index.html">Főoldal</a></li>
+        <li><a href="aruk.html">Áruk</a></li>
+        <li><a href="hely.html">Elhelyezkedés</a></li>
+        <li class="language"><a href="startseite.html">Deutsch</a></li>
+      </ul>
+    </div>
+
+    <div class="content-area">
+      <h1 class="header"><i class='bx bx-package'></i> Áruk</h1>
+
+      <div class="main-block">
+        <section class="card product-section">
+          <h4>Termékeink</h4>
+
+          <!-- product grid container (no duplicate styles here) -->
+          <div id="productGrid" class="product-grid" aria-live="polite"></div>
+
+          <script>
+            (function(){
+              const grid = document.getElementById('productGrid');
+              if (!grid) return;
+              for (let i = 1; i <= 30; i++) {
+                if (i === 2 || i === 24) continue; // skip 2.jpg and 24.jpg as requested
+                const art = document.createElement('article');
+                art.className = 'product-card';
+
+                const img = document.createElement('img');
+                img.src = 'media/' + i + '.jpg';
+                img.alt = ''; // kept empty to avoid "Termék" text
+                img.loading = 'lazy';
+                art.appendChild(img);
+
+                grid.appendChild(art);
+              }
+            })();
+          </script>
+        </section>
+      </div>
+    </div>
   </div>
 
-    <div class="image-grid">
-        <div class="image-container">
-          <img src="media/1.jpg" alt="Kép 1">
+  <footer class="site-footer">
+    <div class="footer-note"><small>Selyemvirág — Csarnok u. 1., Sopron · ildiart56@gmail.com</small></div>
+  </footer>
 
-        </div>
-        <div class="image-container">
-          <img src="media/3.jpg" alt="Kép 3">
-
-        </div>
-        <div class="image-container">
-          <img src="media/9.jpg" alt="Kép 9">
-
-        </div>
-        <div class="image-container">
-          <img src="media/12.jpg" alt="Kép 12">
-
-        </div>
-        <div class="image-container">
-          <img src="media/15.jpg" alt="Kép 15">
-
-        </div>
-        <div class="image-container">
-          <img src="media/30.jpg" alt="Kép 30">
-
-        </div>
-        <div class="image-container">
-          <img src="media/13.jpg" alt="Kép 13">
-
-        </div>
-        <div class="image-container">
-          <img src="media/16.jpg" alt="Kép 16">
-
-        </div>
-        <div class="image-container">
-          <img src="media/20.jpg" alt="Kép 20">
-
-        </div>
-        <div class="image-container">
-          <img src="media/11.jpg" alt="Kép 11">
-
-        </div>
-        <div class="image-container">
-          <img src="media/14.jpg" alt="Kép 14">
-
-        </div>
-        <div class="image-container">
-          <img src="media/17.jpg" alt="Kép 17">
-
-        </div>
-        <div class="image-container">
-          <img src="media/10.jpg" alt="Kép 10">
-
-        </div>
-        <div class="image-container">
-          <img src="media/4.jpg" alt="Kép 4">
-
-        </div>
-        <div class="image-container">
-          <img src="media/18.jpg" alt="Kép 18">
-
-        </div>
-        <div class="image-container">
-          <img src="media/7.jpg" alt="Kép 7">
-
-        </div>
-        <div class="image-container">
-          <img src="media/5.jpg" alt="Kép 5">
-
-        </div>
-          <div class="image-container">
-            <img src="media/19.jpg" alt="Kép 19">
-
-          </div>
-      </div>
-      <ol class="dokumentumok">
-        <div class="container">
-            <section class="dokumentumok">
-              <h4>Adatok</h2>
-              <ul>
-                <li class="dokumentumok">
-                    <span class="lred"><i class='bx bx-edit-alt'></i></span> Rudil-Art BT.
-                </li>
-                
-                <li class="dokumentumok">
-                    <span class="lred"><i class='bx bx-envelope' ></i></span>
-                     E-mail: ildiart56@gmail.com
-                </li>
-                
-                <li class="dokumentumok">
-                    <span class="lred">&#8205; &#8205; &#8205; &#8205; <i class='bx bx-credit-card'>
-
-                    </i></span> Bankkártyás fizetés | 
-                    <span class="lred"><i class='bx bx-money'></i></span> HUF - EUR</span> fizetés
-                </li>
-              </ul>
-            </section>
-            <section class="dokumentumok">
-              <h4>Egyebek</h2>
-              <ul>
-                <li class="dokumentumok">
-                    <a class="mbrikszi" href="https://linktr.ee/rikszi" target="_blank"> *Made By Rikszi*</a>
-                </li>
-                <li class="dokumentumok">
-                    <span style="color: rgb(180, 180, 85);">Partner: <a class="dokumentumok" 
-                    href="https://bolt.lostempire.hu" target="_blank"><b><span style="color: #28821d;">L</span><span
-                    style="color: #2e9c1f;">o</span><span style="color: #31b320;">s</span><span 
-                    style="color: #34c221;">t</span><span style="color: #962e24;">E</span><span
-                    style="color: #a33026;">m</span><span style="color: #b03125;">p</span><span 
-                    style="color: #bf3124;">i</span><span style="color: #c42b1d;">r</span><span style="color: 
-                    #cf2819;">e</span></b><span style="color: black;">.hu</span></a></span>
-                </li>
-                <li class="dokumentumok">
-                    <span style="color: rgb(0, 0, 0);">© Minden jog fenntartva | 2024</span>
-                </li>
-              </ul>
-            </section class="dokumentumok">            
-            <section>
-              <h4>Elérhetőségek</h2>
-              <ul>
-                <li class="dokumentumok">
-                    <span class="lred"><i class='bx bx-location-plus'></i></span>
-                     9400 Sopron, Csarnok utca 1.
-                </li>
-                <li class="dokumentumok">
-
-                </li>
-                <li class="dokumentumok">
-                    <span class="lred"><i class='bx bx-id-card'></i></span>
-                     Kapcsolattartó: Horváthné Ildikó
-                </li>
-              </ul>
-            </section>
-          </div>
-        </ol>
-        <br>
+  <script>
+    (function(){
+      const wrapper = document.querySelector('.wrapper-main');
+      const toggle = document.querySelector('.menu-toggle');
+      if (toggle && wrapper) {
+        toggle.addEventListener('click', ()=> wrapper.classList.toggle('menu-open'));
+      }
+    })();
+  </script>
 </body>
 </html>

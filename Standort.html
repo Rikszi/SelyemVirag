@@ -1,126 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seidenblumen Sopron | Standort</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <script src="script.js"></script>
-    <link rel="icon" href="media/logo.png" type="image/x-icon" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Standort — Selyemvirág</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="media/ildi_flower_logo.png" type="image/x-icon" />
+  <style>
+    .dropdown-menu {
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      border-radius: 0 0 12px 12px;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: max-height 0.35s cubic-bezier(.4,0,.2,1), opacity 0.25s, visibility 0.25s;
+      z-index: 999;
+    }
+    .dropdown-menu.open {
+      max-height: 400px;
+      opacity: 1;
+      visibility: visible;
+    }
+    .dropdown-menu ul {
+      list-style: none;
+      margin: 0;
+      padding: 0.5rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .dropdown-menu ul li {
+      width: 100%;
+      padding: 0.5rem 0;
+      text-align: center;
+    }
+    .dropdown-menu ul li a {
+      color: #222;
+      font-size: 1.1rem;
+      text-decoration: none;
+      font-weight: 600;
+      display: block;
+      transition: color 0.2s;
+    }
+    .dropdown-menu ul li a:hover {
+      color: var(--brand, #2f6bf0);
+    }
+    @media (min-width: 900px) {
+      .dropdown-menu { display: none !important; }
+    }
+    .menu-toggle {
+      background: var(--brand, #2f6bf0);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      z-index: 1001;
+    }
+    .menu-toggle:active,
+    .menu-toggle:focus {
+      background: #1746a0;
+      outline: none;
+    }
+    .menu-bar {
+      position: relative;
+    }
+  </style>
 </head>
 <body>
+  <div class="wrapper-main">
     <div class="menu-bar">
-        <h1 class="logo"><!--Light<span>Code.</span>--><img width="150px" src="media/ildi_flower_logo.png" alt="logo"></h1>
-        <ul>
-          <li><a href="Hauptseite.html">Hauptseite</a></li>
-          <li><a href="Waren.html">Waren</a></li>
-          <li><a href="">Standort</a></li>
-          <li><a href="index.html"><span style="color: #0073FF;">Nyelv: Magyar</span></a></li>
-        </ul>
-      </div>
-    <div class="map">
-        <p class="map">
-        <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d798.
-        5094130184726!2d16.58560001403398!3d47.68723953294106!2m3!1f0!2f0!3f0!3
-        m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476c3ca05f2d5dcf%3A0x2dd2c56a021c4358
-        !2sSopron%2C%20Csarnok%20u.%201%2C%209400!5e0!3m2!1shu!2shu!4v1718445789
-        272!5m2!1shu!2shu" width="600" height="450" style="border:1;" allowfullscreen=""
-         loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </p>
+      <h1 class="logo"><img width="150px" src="media/ildi_flower_logo.png" alt="logo"></h1>
+      <button class="menu-toggle" aria-label="toggle menu">☰</button>
+      <ul>
+        <li><a href="startseite.html">Startseite</a></li>
+        <li><a href="waren.html">Waren</a></li>
+        <li><a href="standort.html">Standort</a></li>
+        <li class="language"><a href="index.html">Magyar</a></li>
+      </ul>
     </div>
-   <div class="image-grid1">
-    <div class="image-container">
-        <img src="media/6.jpg" alt="Bild 1">
-        <p class="Leírás1">Seitenansicht</p>
-    </div>
-    <div class="image-container">
-        <img src="media/23.jpg" alt="Bild 2">
-        <p class="Leírás1">Seitenansicht</p>
-    </div>
-    <div class="image-container">
-        <img src="media/25.jpg" alt="Bild 3">
-        <p class="Leírás1">Seitenansicht</p>
-    </div>
-   </div>
-   <div class="image-grid2">
-    <div class="image-container">
-        <img src="media/21.jpg" alt="Bild 4">
-        <p class="Leírás1">Seitenansicht</p>
-    </div>
-    <div class="image-container">
-        <img src="media/22.jpg" alt="Bild 5">
-        <p class="Leírás1">Seitenansicht</p>
-    </div>
-    <div class="image-container">
-        <img src="media/26.jpg" alt="Bild 6">
-        <p class="Leírás1">Ansicht von oben</p>
-    </div>
-    <div class="image-container">
-        <img src="media/29.jpg" alt="Bild 7">
-        <p class="Leírás1">Seitenansicht</p>
-    </div>
-   </div>
-   <ol class="dokumentumok">
-    <div class="container">
-        <section class="dokumentumok">
-          <h4>Daten</h2>
-          <ul>
-            <li class="dokumentumok">
-                <span class="lred"><i class='bx bx-edit-alt'></i></span> Rudil-Art BT.
-            </li>
-            
-            <li class="dokumentumok">
-                <span class="lred"><i class='bx bx-envelope' ></i></span>
-                 Email: ildiart56@gmail.com
-            </li>
-            
-            <li class="dokumentumok">
-                <span class="lred">&#8205; &#8205; &#8205; &#8205; <i class='bx bx-credit-card'>
 
-                </i></span> Kreditkarte Zahlung | 
-                <span class="lred"><i class='bx bx-money'></i></span> HUF - EUR</span> Zahlung
-            </li>
-          </ul>
-        </section>
-        <section class="dokumentumok">
-          <h4>Anders</h2>
-          <ul>
-            <li class="dokumentumok">
-                <a class="mbrikszi" href="https://linktr.ee/rikszi" target="_blank"> *Hergestellt von Rikszi*</a>
-            </li>
-            <li class="dokumentumok">
-                <span style="color: rgb(180, 180, 85);">Partner: <a class="dokumentumok" 
-                href="https://bolt.lostempire.hu" target="_blank"><b><span style="color: #28821d;">L</span><span
-                style="color: #2e9c1f;">o</span><span style="color: #31b320;">s</span><span 
-                style="color: #34c221;">t</span><span style="color: #962e24;">E</span><span
-                style="color: #a33026;">m</span><span style="color: #b03125;">p</span><span 
-                style="color: #bf3124;">i</span><span style="color: #c42b1d;">r</span><span style="color: 
-                #cf2819;">e</span></b><span style="color: black;">.hu</span></a></span>
-            </li>
-            <li class="dokumentumok">
-                <span style="color: rgb(0, 0, 0);">© Alle Rechte vorbehalten | 2024</span>
-            </li>
-          </ul>
-        </section class="dokumentumok">           
-        <section>
-          <h4>Kontakte</h2>
-          <ul>
-            <li class="dokumentumok">
-                <span class="lred"><i class='bx bx-location-plus'></i></span>
-                 9400 Sopron, Csarnok utca 1.
-            </li>
-            <li class="dokumentumok">
+    <div class="content-area">
+      <h1 class="header"><i class='bx bx-location-plus'></i> Standort</h1>
 
-            </li>
-            <li class="dokumentumok">
-                <span class="lred"><i class='bx bx-id-card'></i></span>
-                Ansprechpartner: Horváthné Ildikó
-            </li>
-          </ul>
+      <div class="main-block">
+        <section class="card">
+          <h4>Anfahrt</h4>
+          <p>9400 Sopron, Csarnok utca 1. — Marktstand im Markthallenbereich. Parkmöglichkeiten in der Nähe.</p>
+
+          <!-- Google Maps embed (responsive, lazy) -->
+          <div class="map-wrap" style="margin-top:0.75rem;">
+            <iframe
+              title="Selyemvirág - Sopron, Csarnok utca 1"
+              src="https://www.google.com/maps?q=9400+Sopron+Csarnok+utca+1&output=embed"
+              width="100%"
+              height="360"
+              style="border:0;"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen>
+            </iframe>
+            <div style="margin-top:.4rem;font-size:.95rem">
+              <a href="https://www.google.com/maps?q=9400+Sopron+Csarnok+utca+1" target="_blank" rel="noopener">In Google Maps öffnen</a>
+            </div>
+          </div>
         </section>
       </div>
-    </ol>
-    <br>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-note"><small>Selyemvirág — Csarnok u. 1., Sopron · ildiart56@gmail.com</small></div>
+  </footer>
+  <script>
+    (function(){
+      const wrapper = document.querySelector('.wrapper-main');
+      const toggle = document.querySelector('.menu-toggle');
+      if (toggle && wrapper) {
+        toggle.addEventListener('click', ()=> wrapper.classList.toggle('menu-open'));
+      }
+    })();
+  </script>
 </body>
 </html>

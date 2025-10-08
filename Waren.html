@@ -1,158 +1,172 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seidenblumen Sopron | Waren</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <script src="script.js"></script>
-    <link rel="icon" href="media/logo.png" type="image/x-icon" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Waren — Selyemvirág</title>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="media/ildi_flower_logo.png" type="image/x-icon" />
+
+  <!-- local gallery styles (keep single copy here) -->
+  <style>
+    html,body{overflow-x:hidden;box-sizing:border-box}
+    .wrapper-main{max-width:100%;box-sizing:border-box}
+
+    .product-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:1rem;
+      margin-top:.75rem;
+      align-items:start;
+      box-sizing:border-box;
+      width:100%;
+    }
+
+    .product-card{
+      background:#fff;
+      border:1px solid #eee;
+      border-radius:8px;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      align-items:stretch;
+      box-shadow:0 6px 18px rgba(0,0,0,0.04);
+      box-sizing:border-box;
+      margin:0;
+      min-width:0;
+    }
+
+    .product-card img{
+      display:block;
+      width:100%;
+      max-width:100%;
+      aspect-ratio:4/3;
+      height:auto;
+      object-fit:cover;
+      box-sizing:border-box;
+      margin:0;
+      -webkit-user-drag: none;
+      user-select: none;
+    }
+
+    .content-area{padding-right:1rem;box-sizing:border-box}
+    .product-body{padding:.75rem;flex:1;display:flex;flex-direction:column;gap:.5rem}
+    .product-title{font-weight:700;margin:0;font-size:1rem;color:#123}
+    .product-cta{display:flex;gap:.5rem;align-items:center;justify-content:space-between;margin-top:.5rem}
+    .btn-cta{background:var(--accent, #2f6bf0);color:#fff;border:0;padding:.45rem .6rem;border-radius:6px;text-decoration:none;font-size:.9rem}
+
+    @media (max-width:520px){
+      .product-card img{aspect-ratio:1.4/1}
+      .product-body{padding:.6rem}
+    }
+
+    /* Dropdown menu styles */
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      min-width: 200px;
+    }
+    .dropdown-menu.open {
+      display: block;
+    }
+    .dropdown-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .dropdown-menu ul li {
+      padding: 0;
+      margin: 0;
+    }
+    .dropdown-menu ul li a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: #333;
+      text-decoration: none;
+    }
+    .dropdown-menu ul li a:hover {
+      background-color: #f0f0f0;
+    }
+    @media (min-width: 900px) { .dropdown-menu { display: none !important; } }
+    .menu-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+      padding: 0;
+      margin: 0;
+      color: #333;
+    }
+    .menu-toggle:active, .menu-toggle:focus {
+      outline: none;
+    }
+    .menu-bar { position: relative; }
+  </style>
 </head>
 <body>
-  <div class="menu-bar">
-    <h1 class="logo"><!--Light<span>Code.</span>--><img width="150px" src="media/ildi_flower_logo.png" alt="logo"></h1>
-    <ul>
-      <li><a href="Hauptseite.html">Hauptseite</a></li>
-      <li><a href="">Waren</a></li>
-      <li><a href="Standort.html">Standort</a></li>
-      <li><a href="index.html"><span style="color: #0073FF;">Nyelv: Magyar</span></a></li>
-    </ul>
-  </div>
-    <div class="image-grid">
-        <div class="image-container">
-          <img src="media/1.jpg" alt="Bild 1">
+  <div class="wrapper-main">
+    <div class="menu-bar">
+      <h1 class="logo"><img width="150px" src="media/ildi_flower_logo.png" alt="logo"></h1>
+      <button class="menu-toggle" aria-label="toggle menu">☰</button>
+      <ul>
+        <li><a href="startseite.html">Startseite</a></li>
+        <li><a href="waren.html">Waren</a></li>
+        <li><a href="standort.html">Standort</a></li>
+        <li class="language"><a href="index.html">Magyar</a></li>
+      </ul>
+    </div>
 
-        </div>
-        <div class="image-container">
-          <img src="media/3.jpg" alt="Bild 3">
+    <div class="content-area">
+      <h1 class="header"><i class='bx bx-package'></i> Waren</h1>
 
-        </div>
-        <div class="image-container">
-          <img src="media/9.jpg" alt="Bild 9">
+      <div class="main-block">
+        <section class="card product-section">
+          <h4>Unsere Produkte</h4>
 
-        </div>
-        <div class="image-container">
-          <img src="media/12.jpg" alt="Bild 12">
+          <div id="productGrid" class="product-grid" aria-live="polite"></div>
 
-        </div>
-        <div class="image-container">
-          <img src="media/15.jpg" alt="Bild 15">
+          <script>
+            (function(){
+              const grid = document.getElementById('productGrid');
+              if (!grid) return;
+              for (let i = 1; i <= 30; i++) {
+                if (i === 2 || i === 24) continue; // skip 2.jpg and 24.jpg as requested
+                const art = document.createElement('article');
+                art.className = 'product-card';
 
-        </div>
-        <div class="image-container">
-          <img src="media/30.jpg" alt="Bild 30">
+                const img = document.createElement('img');
+                img.src = 'media/' + i + '.jpg';
+                img.alt = ''; // no "Produkt" text
+                img.loading = 'lazy';
+                art.appendChild(img);
 
-        </div>
-        <div class="image-container">
-          <img src="media/13.jpg" alt="Bild 13">
-
-        </div>
-        <div class="image-container">
-          <img src="media/16.jpg" alt="Bild 16">
-
-        </div>
-        <div class="image-container">
-          <img src="media/20.jpg" alt="Bild 20">
-
-        </div>
-        <div class="image-container">
-          <img src="media/11.jpg" alt="Bild 11">
-
-        </div>
-        <div class="image-container">
-          <img src="media/14.jpg" alt="Bild 14">
-
-        </div>
-        <div class="image-container">
-          <img src="media/17.jpg" alt="Bild 17">
-
-        </div>
-        <div class="image-container">
-          <img src="media/10.jpg" alt="Bild 10">
-
-        </div>
-        <div class="image-container">
-          <img src="media/4.jpg" alt="Bild 4">
-
-        </div>
-        <div class="image-container">
-          <img src="media/18.jpg" alt="Bild 18">
-
-        </div>
-        <div class="image-container">
-          <img src="media/7.jpg" alt="Bild 7">
-
-        </div>
-        <div class="image-container">
-          <img src="media/5.jpg" alt="Bild 5">
-
-        </div>
-          <div class="image-container">
-            <img src="media/19.jpg" alt="Bild 19">
-
-          </div>
+                grid.appendChild(art);
+              }
+            })();
+          </script>
+        </section>
       </div>
-      <ol class="dokumentumok">
-        <div class="container">
-            <section class="dokumentumok">
-              <h4>Daten</h2>
-              <ul>
-                <li class="dokumentumok">
-                    <span class="lred"><i class='bx bx-edit-alt'></i></span> Rudil-Art BT.
-                </li>
-                
-                <li class="dokumentumok">
-                    <span class="lred"><i class='bx bx-envelope' ></i></span>
-                     Email: ildiart56@gmail.com
-                </li>
-                
-                <li class="dokumentumok">
-                    <span class="lred">&#8205; &#8205; &#8205; &#8205; <i class='bx bx-credit-card'>
+    </div>
+  </div>
 
-                    </i></span> Kreditkarte Zahlung | 
-                    <span class="lred"><i class='bx bx-money'></i></span> HUF - EUR</span> Zahlung
-                </li>
-              </ul>
-            </section>
-            <section class="dokumentumok">
-              <h4>Anders</h2>
-              <ul>
-                <li class="dokumentumok">
-                    <a class="mbrikszi" href="https://linktr.ee/rikszi" target="_blank"> *Hergestellt von Rikszi*</a>
-                </li>
-                <li class="dokumentumok">
-                    <span style="color: rgb(180, 180, 85);">Partner: <a class="dokumentumok" 
-                    href="https://bolt.lostempire.hu" target="_blank"><b><span style="color: #28821d;">L</span><span
-                    style="color: #2e9c1f;">o</span><span style="color: #31b320;">s</span><span 
-                    style="color: #34c221;">t</span><span style="color: #962e24;">E</span><span
-                    style="color: #a33026;">m</span><span style="color: #b03125;">p</span><span 
-                    style="color: #bf3124;">i</span><span style="color: #c42b1d;">r</span><span style="color: 
-                    #cf2819;">e</span></b><span style="color: black;">.hu</span></a></span>
-                </li>
-                <li class="dokumentumok">
-                    <span style="color: rgb(0, 0, 0);">© Alle Rechte vorbehalten | 2024</span>
-                </li>
-              </ul>
-            </section class="dokumentumok">           
-            <section>
-              <h4>Kontakte</h2>
-              <ul>
-                <li class="dokumentumok">
-                    <span class="lred"><i class='bx bx-location-plus'></i></span>
-                     9400 Sopron, Csarnok utca 1.
-                </li>
-                <li class="dokumentumok">
+  <footer class="site-footer">
+    <div class="footer-note"><small>Selyemvirág — Csarnok u. 1., Sopron · ildiart56@gmail.com</small></div>
+  </footer>
 
-                </li>
-                <li class="dokumentumok">
-                    <span class="lred"><i class='bx bx-id-card'></i></span>
-                    Ansprechpartner: Horváthné Ildikó
-                </li>
-              </ul>
-            </section>
-          </div>
-        </ol>
-        <br>
+  <script>
+    (function(){
+      const wrapper = document.querySelector('.wrapper-main');
+      const toggle = document.querySelector('.menu-toggle');
+      if (toggle && wrapper) {
+        toggle.addEventListener('click', ()=> wrapper.classList.toggle('menu-open'));
+      }
+    })();
+  </script>
 </body>
 </html>

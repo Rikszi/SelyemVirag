@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbarának ❤️</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-image: url(bouquet-roses-with-box-with-hearts.jpg);
+            background-size: cover;
+            background-position: center;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            width: 360px;
+        }
+
+        h1 {
+            animation: fadeIn 3s ease forwards;
+        }
+
+        .heart {
+            font-size: 60px;
+            animation: pulse 3.5s infinite;
+        }
+
+        /* AJÁNDÉK */
+        .gift {
+            width: 150px;
+            height: 150px;
+            margin: 40% auto;
+            background: #ff4d6d;
+            position: relative;
+            cursor: pointer;
+            border-radius: 10px;
+            animation: floatgift 3s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        .gift::before,
+        .gift::after {
+            content: "";
+            position: absolute;
+            background: #fff;
+        }
+
+        .gift::before {
+            width: 100%;
+            height: 20px;
+            top: 65px;
+            left: 0;
+        }
+
+        .gift::after {
+            width: 20px;
+            height: 100%;
+            left: 65px;
+            top: 0;
+        }
+
+        .lid {
+            position: absolute;
+            width: 150px;
+            height: 40px;
+            background: #ff1e56;
+            top: -40px;
+            left: 0;
+            border-radius: 15px 15px 0 0;
+            transition: transform 1s ease;
+        }
+
+        .open .lid {
+            transform: rotate(-30deg) translate(-30px, -30px);
+            transition-delay: 350ms;
+        }
+
+        /* ÜZENET DOBOZ */
+        .message-box {
+            position: absolute;
+            top: -130px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.7);
+            width: 320px;
+            background: rgba(235, 215, 215, 0.7);
+            color: rgb(255, 87, 129);
+            padding: 22px;
+            border-radius: 18px;
+            opacity: 0;
+            transition: all 0.8s ease;
+            z-index: 3;
+            box-shadow: 5px 30px 55px rgba(242, 80, 191, 0.7);
+            margin-top: 80%;
+        }
+
+        .message-box.show {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        .close {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* VIRÁGOK / SZÍVEK */
+        .decor {
+            position: absolute;
+            font-size: 45px;
+            opacity: 0;
+            transform: scale(0);
+            pointer-events: none;
+        }
+
+        .decor.show {
+            animation: bloom 2.5s ease forwards;
+            animation-delay: 500ms;
+        }
+
+        .left {
+            left: -75px;
+            top: 45%;
+        }
+
+        .right {
+            right: -75px;
+            top: 45%;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes floatgift {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes bloom {
+            0% {
+                opacity: 0;
+                transform: scale(0) rotate(-10deg);
+            }
+            60% {
+                opacity: 1;
+                transform: scale(1.3) rotate(5deg);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .nev {
+            font-family: 'Pacifico', cursive;
+            font-size: 40px;
+            color: #dca9f1;
+            text-shadow: 5px 15px 20px rgba(0,0,0,0.8);
+            z-index: 4;
+            background-color: #b63838;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="nev">Kedves Barbara!</h1>
+    <div class="heart">❤️</div>
+
+    <div class="message-box" id="messageBox">
+        <div class="close" id="closeBtn">✖</div>
+        <h3 style="color: #b63838;">Boldog Valentin-napot! 💖</h3>
+        <p>
+            Te vagy a legszebb ajándék az életemben.<br>
+            Minden pillanat veled csoda,<br>
+            és mindig szeretni foglak! 💕
+        </p>
+    </div>
+
+    <div class="gift" id="gift">
+        <div class="lid"></div>
+    </div>
+
+    <div class="decor left" id="leftDecor">🌸💖🌹</div>
+    <div class="decor right" id="rightDecor">💐❤️🌷</div>
+</div>
+
+<script>
+    const gift = document.getElementById("gift");
+    const messageBox = document.getElementById("messageBox");
+    const leftDecor = document.getElementById("leftDecor");
+    const rightDecor = document.getElementById("rightDecor");
+    const closeBtn = document.getElementById("closeBtn");
+
+    gift.addEventListener("click", () => {
+        gift.classList.add("open");
+        messageBox.classList.add("show");
+
+        leftDecor.classList.add("show");
+        rightDecor.classList.add("show");
+    });
+
+    closeBtn.addEventListener("click", () => {
+        messageBox.classList.remove("show");
+        gift.classList.remove("open");
+        leftDecor.classList.remove("show");
+        rightDecor.classList.remove("show");
+    });
+</script>
+
+</body>
+</html>
